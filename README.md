@@ -1,14 +1,14 @@
 # Main Libraries
 
-Nuxt - https://nuxt.com/docs/getting-started/introduction
-Tailwind - https://tailwindcss.com/docs/utility-first
-Shadcn Vue - https://www.shadcn-vue.com/docs/introduction.html
+- Nuxt - https://nuxt.com/docs/getting-started/introduction
+- Tailwind - https://tailwindcss.com/docs/utility-first
+- Shadcn Vue - https://www.shadcn-vue.com/docs/introduction.html
 
 # Auxiliare Libraries
 
-Headlessui (primitive UI components using in Shadcn Vue) - https://headlessui.com
-Heroicons (icons) - https://www.npmjs.com/package/@heroicons/vue
-Lucide (icons) - https://lucide.dev/guide/packages/lucide-vue-next
+- Headlessui (primitive UI components using in Shadcn Vue) - https://headlessui.com
+- Heroicons (icons) - https://www.npmjs.com/package/@heroicons/vue
+- Lucide (icons) - https://lucide.dev/guide/packages/lucide-vue-next
 
 ## Setup
 
