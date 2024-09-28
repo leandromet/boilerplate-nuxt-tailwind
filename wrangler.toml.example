@@ -1,0 +1,16 @@
+name = "site"
+main = "./.output/server/index.mjs"
+workers_dev = false
+compatibility_date = "2022-09-10"
+
+[site]
+bucket = ".output/public"
+
+[env.production]
+routes = [
+  { pattern = "meu-dominio.com", custom_domain = true },
+  { pattern = "www.meu-dominio.com", custom_domain = true },
+]
+
+[env.development]
+route = { pattern = "dev.meu-dominio.com", custom_domain = true }
