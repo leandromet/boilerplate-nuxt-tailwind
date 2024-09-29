@@ -3,8 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "build-cloudflare": "NODE_OPTIONS=--openssl-legacy-provider nuxi build --preset=cloudflare_module",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider nuxt build",
     "deploy-production": "wrangler deploy --env production",
     "deploy-development": "wrangler deploy --env development",
     "dev": "nuxt dev",
