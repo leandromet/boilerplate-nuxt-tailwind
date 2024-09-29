@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 const navigation = [
   { name: "Product", href: "#" },
   { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
+  { name: "Map", href: "/map" },
   { name: "Company", href: "#" },
 ];
 

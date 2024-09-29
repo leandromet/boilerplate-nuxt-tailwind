@@ -5,6 +5,7 @@ import axios from "axios";
 const list = ref([]);  // API data
 const map1 = ref(null);
 const map2 = ref(null);
+let isSyncing = false;  // Flag to avoid event loop
 
 // Layer information (overlays for map2)
 const layerInfo = {       
@@ -26,7 +27,18 @@ function loadPosts() {
     });
 }
 
-// Function to initialize the maps with layer controls
+// Function to synchronize map movements
+function syncMaps(sourceMap, targetMap) {
+  if (!isSyncing) {
+    isSyncing = true;
+    const center = sourceMap.getCenter();
+    const zoom = sourceMap.getZoom();
+    targetMap.setView(center, zoom, { animate: false });
+    isSyncing = false;
+  }
+}
+
+// Function to initialize the maps with layer controls and sync functionality
 async function initMaps() {
   if (process.client) {
     const L = await import("leaflet");
@@ -52,7 +64,6 @@ async function initMaps() {
     // Add default base layer to map1
     baseMapsMap1["Esri Satellite"].addTo(map1.value);
     
-
     // Add layers control for map1
     L.control.layers(baseMapsMap1).addTo(map1.value);
 
@@ -75,14 +86,19 @@ async function initMaps() {
     }
 
     // Add layers control to map2 for toggling overlay layers
-    baseMapMap2["OpenStreetMap"].addTo(map2.value);
-    L.control.layers(baseMapsMap1, overlayLayersMap2).addTo(map2.value);  //  base layers, only overlay layers are added to this control
+    L.control.layers(null, overlayLayersMap2).addTo(map2.value);  // null for base layers, only overlay layers are added to this control
+
+    // Sync the maps by listening to movement and zoom events
+    map1.value.on('moveend', () => syncMaps(map1.value, map2.value));
+    map1.value.on('zoomend', () => syncMaps(map1.value, map2.value));
+    
+    map2.value.on('moveend', () => syncMaps(map2.value, map1.value));
+    map2.value.on('zoomend', () => syncMaps(map2.value, map1.value));
   }
 }
 
 // Load posts and initialize maps when the component is mounted
 onMounted(() => {
-  //loadPosts();
   initMaps();
 });
 </script>
