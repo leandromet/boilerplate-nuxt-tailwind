@@ -1,15 +1,10 @@
 {
-  "engines": {
-    "node": "18.x"
-  }
-}
-{
   "name": "nuxt-app",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "build-cloudflare": "nuxi build --preset=cloudflare_module",
+    "build-cloudflare": "NODE_OPTIONS=--openssl-legacy-provider nuxi build --preset=cloudflare_module",
     "deploy-production": "wrangler deploy --env production",
     "deploy-development": "wrangler deploy --env development",
     "dev": "nuxt dev",
@@ -45,5 +40,4 @@
     "typescript": "^5.5.4",
     "wrangler": "^3.73.0"
   }
-  
 }
